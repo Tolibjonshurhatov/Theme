@@ -1,0 +1,55 @@
+{
+  "name": "aurora-wallpaper",
+  "productName": "Theme",
+  "version": "1.0.0",
+  "description": "Theme — Wallpaper Studio desktop app",
+  "main": "src/main.js",
+  "author": "Theme",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "build:mac": "electron-builder --mac --universal",
+    "build:win": "electron-builder --win --x64",
+    "build:all": "electron-builder -mw"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "wallpaper": "^7.2.1"
+  },
+  "build": {
+    "appId": "com.theme.wallpaper",
+    "productName": "Theme",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      { "from": "wallpapers", "to": "wallpapers" }
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "build/icon.icns",
+      "artifactName": "Theme-mac.${ext}",
+      "target": [
+        { "target": "dmg", "arch": ["universal"] }
+      ]
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "artifactName": "Theme-win.${ext}",
+      "target": [
+        { "target": "nsis", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}
